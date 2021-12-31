@@ -6,7 +6,8 @@ def matching(scores: List[List], gender_id: List, gender_pref: List) -> List[Tup
     return matches
 
 if __name__ == "__main__":
-    raw_scores = np.loadtxt('raw_scores.txt').tolist()
+    raw_scores = np.loadtxt('scores.txt').tolist()
+    print(raw_scores)
     genders = []
     with open('genders.txt', 'r') as file:
         for line in file:

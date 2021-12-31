@@ -1,0 +1,4 @@
+id interest1 interest2 interest3 career_industry career_role
+1 ai crypto algos tech product_management
+2 ai clean_energy climate clean_energy swe
+3 economics quant algos finance quant

@@ -1,0 +1,5 @@
+id school interest1 interest2 prev_industry prev_roll
+1 hbs finance crypto finance ib
+2 hjp cs null fintech swe
+3 hjp cs clean_energy tech swe
+4 hgse teaching history education history_teacher
