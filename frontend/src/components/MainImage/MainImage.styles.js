@@ -41,13 +41,6 @@ export const Text = styled.h1`
   min-height: 100px;
   color: dimgray;
 
-  h1 {
-    font-size: var(--fontSuperBig);
-
-    @media screen and (max-width: 720px) {
-      font-size: var(--fontBig);
-    }
-  }
 `;
 
 export const PersonTypeButton = styled.button`

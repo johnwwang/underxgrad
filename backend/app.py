@@ -1,34 +1,30 @@
-import datetime
-import os
- 
-from flask import Flask, Response, request
-from flask_mongoengine import MongoEngine
+from flask import Flask, redirect, url_for
+from pymongo import MongoClient
+from flask_cors import CORS, cross_origin
+import json
 
 app = Flask(__name__)
-app.config['MONGODB_SETTINGS'] = {
-    'host': os.environ['MONGODB_HOST'],
-    'username': os.environ['MONGODB_USERNAME'],
-    'password': os.environ['MONGODB_PASSWORD'],
-    'db': 'webapp'
-}
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-db = MongoEngine()
-db.init_app(app)
 
-class Todo(db.Document):
-    title = db.StringField(max_length=60)
-    text = db.StringField()
-    done = db.BooleanField(default=False)
-    pub_date = db.DateTimeField(default=datetime.datetime.now)
+mongoClient = MongoClient('mongodb://127.0.0.1:27017')
+db = mongoClient.get_database('names_db')
+names_col = db.get_collection('names_col')
 
-@app.route("/api")
-def index():
-    Todo.objects().delete()
-    Todo(title="Simple todo A", text="12345678910").save()
-    Todo(title="Simple todo B", text="12345678910").save()
-    Todo.objects(title__contains="B").update(set__text="Hello world")
-    todos = Todo.objects().to_json()
-    return Response(todos, mimetype="application/json", status=200)
+@app.route('/addname/<name>/')
+def addname(name):
+    names_col.insert_one({"name": name.lower()})
+		#  "interest": data['interest'].lower()})
+    return redirect(url_for('getnames'))
+
+@app.route('/getnames/')
+def getnames():
+    names_json = []
+    if names_col.find({}):
+        for name in names_col.find({}).sort("name"):
+            names_json.append({"name": name['name'], "id": str(name['_id'])})
+    return json.dumps(names_json)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=3001)
