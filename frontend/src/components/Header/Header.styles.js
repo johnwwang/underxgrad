@@ -32,6 +32,6 @@ export const LightbulbLogoImg = styled.img`
   width: 200px;
 
   @media screen and (max-width: 500px) {
-    width: 80px;
+    width: 120px;
   }
 `;

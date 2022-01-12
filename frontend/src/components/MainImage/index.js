@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom'
 // Styles
 import { Wrapper, Content, Text, PersonTypeButton } from './MainImage.styles';
 
-function click(){
-	console.log('ayayayy')
-}
-
 const MainImage = ({ image, callback }) => (
 	<Wrapper image={image}>
 		<Content>
@@ -16,7 +12,6 @@ const MainImage = ({ image, callback }) => (
 			<Link to={'/undergrad'}>
 				<PersonTypeButton
 					name='undergrad'
-					onClick={click}
 					position='left'
 				>
 					Undergraduate
@@ -25,7 +20,6 @@ const MainImage = ({ image, callback }) => (
 			<Link to={'/grad'}>
 				<PersonTypeButton
 					name='grad'
-					onClick={click}
 					position='right'
 				>
 					Graduate

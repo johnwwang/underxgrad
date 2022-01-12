@@ -12,13 +12,15 @@ import Grad from './webpages/Grad';
 import NotFound from './components/NotFound'
 
 function App() {
+
   return (
     <Router>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/undergrad' element={<Undergrad />} />
-        <Route path='/grad' element={<Grad />} />
+        <Route path='/grad' element={<Grad/>} 
+        />
         <Route path='/*' element={<NotFound />} />
       </Routes>
       <GlobalStyle />

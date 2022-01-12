@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 
 `
 
-export const Input = styled.input`
+export const TextBox = styled.input`
   margin: 0.5em;
   color: black;
   background: bisque;
